@@ -31,6 +31,7 @@ public class Main {
         }
         in.close();
         return response.toString();
+        //k
     }
     public static String laczenieZSerweremPost(String url, String dane_do_wyslania) throws IOException {
         byte[] postData = dane_do_wyslania.getBytes(StandardCharsets.UTF_8);
