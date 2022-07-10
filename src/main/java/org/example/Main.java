@@ -8,11 +8,45 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+
+
+        boolean dzialanie = true;
+        while(dzialanie){
+            System.out.println("Dodawanie auta(d), Usuwanie auta(ua), Usuwanie klienta(uk), Wyjście(x);");
+            Scanner input = new Scanner(System.in);
+            String tmp="1";
+            tmp= input.next();
+            if(tmp.equals("x")){
+                break;
+            }
+            if(tmp.equals("d")){
+
+                System.out.println("Podaj id auta:");
+                String url = "http://localhost:8080/dodawanie?id="+input.next();
+                System.out.println("Podaj nazwę auta:");
+                url+="&nazwa="+input.next();
+                System.out.println("Podaj prędkość auta:");
+                url+="&predkosc="+input.next();
+                System.out.println(laczenieZSerwerem(url));
+
+            }
+            if(tmp.equals("ua")){
+                String url="http://localhost:8080/usuwanie?typ=a&id="+input.next();
+                System.out.println(laczenieZSerwerem(url));
+            }
+            if(tmp.equals("uk")){
+                String url="http://localhost:8080/usuwanie?typ=k&id="+input.next();
+                System.out.println(laczenieZSerwerem(url));
+            }
+
+        }
         //System.out.println(laczenieZSerwerem("http://localhost:8080/usuwanie?typ=k&id=1"));
-        System.out.println(laczenieZSerwerem("http://localhost:8080/dodawanie?id=4&nazwa=audi&predkosc=250"));
+        //System.out.println(laczenieZSerwerem("http://localhost:8080/dodawanie?id=4&nazwa=audi&predkosc=250"));
         //System.out.println(laczenieZSerweremPost("http://localhost:8080/wypisywanie", "{'aaa':'bbb'}"));
 
     }
@@ -31,7 +65,7 @@ public class Main {
         }
         in.close();
         return response.toString();
-        //k
+
     }
     public static String laczenieZSerweremPost(String url, String dane_do_wyslania) throws IOException {
         byte[] postData = dane_do_wyslania.getBytes(StandardCharsets.UTF_8);
