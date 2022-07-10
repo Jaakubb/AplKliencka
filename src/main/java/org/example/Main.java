@@ -11,7 +11,8 @@ import java.nio.charset.StandardCharsets;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println(laczenieZSerwerem("http://localhost:8080/usuwanie?typ=k&id=1"));
+        //System.out.println(laczenieZSerwerem("http://localhost:8080/usuwanie?typ=k&id=1"));
+        System.out.println(laczenieZSerwerem("http://localhost:8080/dodawanie?id=4&nazwa=audi&predkosc=250"));
         //System.out.println(laczenieZSerweremPost("http://localhost:8080/wypisywanie", "{'aaa':'bbb'}"));
 
     }
