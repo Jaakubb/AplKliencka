@@ -1,5 +1,8 @@
 package org.example;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -13,9 +16,15 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-
+        System.out.println();
+        JSONObject myResponse = new JSONObject(laczenieZSerwerem("http://localhost:8080/listaaut"));
+        JSONArray jAuta= myResponse.getJSONArray("Auta");
+        for (int i=0; i<jAuta.length(); i++){
+            System.out.println(jAuta.getJSONObject(i).getString("nazwa")+" "+jAuta.getJSONObject(i).get("id").toString());
+        }
 
         boolean dzialanie = true;
+
         while(dzialanie){
             System.out.println("Dodawanie auta(d), Usuwanie auta(ua), Usuwanie klienta(uk), Wyjście(x);");
             Scanner input = new Scanner(System.in);
